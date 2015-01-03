@@ -1,8 +1,8 @@
 #include "tank.h"
-#include <s:/cpp/randgen.h>
+#include "../cpp/randgen.h"
 using namespace std;
-#include <s:/Graphics Project Folder/CMUgraphicsLib\cmugraphics.h>		// This will include all of the CMUGraphics Library
-#include <s:/Graphics Project Folder/CMUgraphicsLib\auxil.h>
+#include "../CMUgraphicsLib/cmugraphics.h"		// This will include all of the CMUGraphics Library
+#include "../CMUgraphicsLib/auxil.h"
 #include <math.h>
 #include <cmath>
 tank::tank(): angle(45), velocity(25), x(100), y(100), COLORE(BLACK), LEFT(true)
