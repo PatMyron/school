@@ -1,14 +1,14 @@
 //Pat Myron
 #include <iostream> // Not required - but lets me print to and read from the console
-#include <s:/cpp/apvector.h>
-#include <s:/cpp/apstring.h>
-#include <s:/cpp/randgen.h>
+#include "../cpp/apvector.h"
+#include "../cpp/apstring.h"
+#include "../cpp/randgen.h"
 #include <math.h> 
 #include <cmath>
-#include <s:/project/ch11/tank.h>
+#include "tank.h"
 using namespace std; // Because of iostream
-#include <s:/Graphics Project Folder/CMUgraphicsLib\cmugraphics.h>		// This will include all of the CMUGraphics Library
-#include <s:/Graphics Project Folder/CMUgraphicsLib\auxil.h>
+#include "../CMUgraphicsLib/cmugraphics.h"		// This will include all of the CMUGraphics Library
+#include "../CMUgraphicsLib/auxil.h"
 apvector<int> drawLandscape(window&,color,color);
 //void placeTanks(window&,color,int);
 bool getInput(window&,int&,int&,color,color,color,tank&,tank&,bool&);
