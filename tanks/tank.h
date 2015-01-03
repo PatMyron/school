@@ -1,10 +1,10 @@
 #ifndef TANK_H_
 #define TANK_H_
 using namespace std; // Because of iostream
-#include <s:/cpp/apvector.h> 	 	
-#include <s:/cpp/randgen.h>
-#include <s:/Graphics Project Folder/CMUgraphicsLib\cmugraphics.h>		// This will include all of the CMUGraphics Library
-#include <s:/Graphics Project Folder/CMUgraphicsLib\auxil.h>
+#include "../cpp/apvector.h" 	 	
+#include "../cpp/randgen.h"
+#include "../CMUgraphicsLib/cmugraphics.h"		// This will include all of the CMUGraphics Library
+#include "../CMUgraphicsLib/auxil.h"
 
 class tank
 {
