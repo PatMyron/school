@@ -11,7 +11,7 @@
 
 #include "apmatrix.h"
 #include <stdlib.h>
-#include <iostream.h>
+#include <iostream>
 
 template <class itemType>
 apmatrix<itemType>::apmatrix()

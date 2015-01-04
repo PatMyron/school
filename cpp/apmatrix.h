@@ -124,7 +124,6 @@ class apmatrix
 //     apmatrix<apstring> smat( 300, 1 );      // 300 strings
 //     apmatrix<int> imat;                     // has room for 0 ints
 
-#include "apmatrix.cpp"
 #endif
 
 

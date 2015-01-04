@@ -19,7 +19,7 @@
 //   vector<int> v( 10 );
 //   v = 0; // Oops!! Allowed because of implicit type-con2lversion.
 
-#define explicit
+// #define explicit
 
 
 
@@ -124,7 +124,7 @@ class apvector
 //      apvector<int> v2(4);      // 4-element vector
 //      apvector<int> v3(4, 22);  // 4-element vector, all elements == 22.
 
-#include "apvector.cpp"
+// #include "apvector.cpp"
 #endif
 
 
