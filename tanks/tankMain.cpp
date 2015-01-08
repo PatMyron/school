@@ -9,18 +9,17 @@
 using namespace std; // Because of iostream
 #include "../CMUgraphicsLib/cmugraphics.h"		// This will include all of the CMUGraphics Library
 #include "../CMUgraphicsLib/auxil.h"
-apvector<int> drawLandscape(window&,color skycolor,color groundcolor);
-bool getInput(window&,color skycolor,color groundcolor,tank& left,tank& right,bool& leftTurn);
-color  bullet(window&,color skycolor,color groundcolor,tank& left,tank& right,bool& leftTurn);
-void main() 
-{ 
-	color whatIsHit=color(7,7,7);
+apvector<int> drawLandscape(window&,color skycolor,color groundcolor); // creates landscape. returns height of ground at every x-value. only called once
+bool getInput(window&,color skycolor,tank& left,tank& right,bool& leftTurn); // gets input for 2 paramaters. returns true when enter key (shoot) is pressed
+color  bullet(window&,color skycolor,tank& left,tank& right,bool& leftTurn); // goes through bullets path. returns color of what is hit.
+void main() { 
+	color whatIsHit=color(7,7,7); // set to a known, but useless value
 	bool leftTurn=true;
 	color skycolor=LIGHTBLUE;
 	color groundcolor=WHITE;
 	// tanks must be different colors!
-	color tankcolor1=RED; // color(5,5,5); // clubs
-	color tankcolor2=GREEN; // color(40,40,40); // left parentheses
+	color tankcolor1=color(5,5,5); // clubs
+	color tankcolor2=color(40,40,40); // left parentheses
 	window w(1250,900);
 	w.SetBuffering(true);
 	drawLandscape(w,skycolor,groundcolor); // only called once. can return array of ground heights[]
@@ -29,22 +28,21 @@ void main()
 	left.drawTank(w);
 	right.drawTank(w);
 	w.UpdateBuffer(); 
-	
+
 	while(whatIsHit!=left.getColor() && whatIsHit!=right.getColor())
 	{
-		getInput(w,skycolor,groundcolor,left,right,leftTurn);
-		whatIsHit=bullet(w,skycolor,groundcolor,left,right,leftTurn);
-		cout<<whatIsHit.ucBlue<<" "<<whatIsHit.ucRed<<" "<<whatIsHit.ucGreen<<" "<<endl;
+		getInput(w,skycolor,left,right,leftTurn);
+		whatIsHit=bullet(w,skycolor,left,right,leftTurn);
 	}
 
-    // clearing angle/power info and setting pen color
+	// clearing angle/power info and setting pen color
 	w.SetBrush(skycolor);
 	w.SetPen(skycolor);	//erasing up top
 	w.DrawRectangle(0,0,w.GetWidth(),200,FILLED);
 	w.SetFont(50,PLAIN,ROMAN);
 	w.SetBrush(BLACK);
 	w.SetPen(BLACK);
-		
+
 	// drawing winner message
 	if (whatIsHit==left.getColor())
 	{
@@ -56,8 +54,7 @@ void main()
 	}
 	w.UpdateBuffer();
 } 
-apvector<int> drawLandscape(window& w,color skycolor,color groundcolor) // returns height of ground at every x-value. only called once
-{
+apvector<int> drawLandscape(window& w,color skycolor,color groundcolor) { // creates landscape. returns height of ground at every x-value. only called once
 	w.SetBrush(skycolor);
 	w.SetPen(skycolor);
 	w.DrawRectangle(0,0,w.GetWidth(),w.GetHeight(),FILLED);
@@ -75,8 +72,7 @@ apvector<int> drawLandscape(window& w,color skycolor,color groundcolor) // retur
 	}
 	return heights;
 }
-bool getInput(window& w,color skycolor,color groundcolor,tank& left,tank& right,bool& leftTurn)
-{
+bool getInput(window& w,color skycolor,tank& left,tank& right,bool& leftTurn) { // gets input for 2 paramaters. returns true when enter key (shoot) is pressed
 	char k='#';  // for key, set to a known, but useless value
 	int angle;    
 	int velocity;  
@@ -108,18 +104,18 @@ bool getInput(window& w,color skycolor,color groundcolor,tank& left,tank& right,
 		w.UpdateBuffer();
 
 		//redraw tank
-		
+
 		w.SetBrush(skycolor); // erasing around tank
 		w.SetPen(skycolor);
 		if(leftTurn) w.DrawRectangle(left.getXstart()-3,left.getYstart()+3,left.getXend()+3,left.getYend()-3,FILLED);
 		else w.DrawRectangle(right.getXstart()+3,right.getYstart()+3,right.getXend()-3,right.getYend()-3,FILLED);
-		
+
 		// letting user change paramaters
 		w.WaitKeyPress(k);
 		if(k==8) angle++; // up
-	    if(k==2) angle--; // down
+		if(k==2) angle--; // down
 		if(k==6) velocity++; // right
-	    if(k==4) velocity--; // left
+		if(k==4) velocity--; // left
 
 		// setting limits
 		if(angle<1) angle=1;
@@ -128,24 +124,26 @@ bool getInput(window& w,color skycolor,color groundcolor,tank& left,tank& right,
 		if (velocity>35) velocity=35;
 
 		if (leftTurn) {
-			 left.setAngle(angle);
-			 left.setSpeed(velocity);
-			 // change pen color
-			 left.drawTank(w); // redrawing tank
+			left.setAngle(angle);
+			left.setSpeed(velocity);
+			// change pen color
+			left.drawTank(w); // redrawing tank
 		}
 		else {
-			 right.setAngle(angle);
-			 right.setSpeed(velocity);
-			 // change pen color
-			 right.drawTank(w); // redrawing tank
-		 }
+			right.setAngle(angle);
+			right.setSpeed(velocity);
+			// change pen color
+			right.drawTank(w); // redrawing tank
+		}
 		w.UpdateBuffer();
 	}
-		
+
 	if(k==13) return true;
 }
-color bullet(window& w,color skycolor,color groundcolor,tank& left,tank& right,bool& leftTurn)
-{
+color bullet(window& w,color skycolor,tank& left,tank& right,bool& leftTurn) { // goes through bullets path. returns color of what is hit.
+	w.SetBrush(skycolor); //erasing up top to make sure it doesnt count hitting the text
+	w.SetPen(skycolor);	
+	w.DrawRectangle(0,0,w.GetWidth(),200,FILLED);
 	double dtime=0.007;
 	int bulletRadius=4;
 	int bulletX,bulletY;
@@ -169,8 +167,6 @@ color bullet(window& w,color skycolor,color groundcolor,tank& left,tank& right,b
 			time+=dtime;
 			bulletX+=xVel*time;
 			bulletY+=-yVel*time+40*time*time;
-			color whatIsHit = w.GetColor(bulletX,bulletY);
-			cout<<(int)whatIsHit.ucBlue<<" "<<(int)whatIsHit.ucRed<<" "<<(int)whatIsHit.ucGreen<<" "<<endl;
 		}
 		leftTurn=false;
 	}
@@ -194,12 +190,8 @@ color bullet(window& w,color skycolor,color groundcolor,tank& left,tank& right,b
 			time+=dtime;
 			bulletX+=xVel*time;
 			bulletY+=-yVel*time+40*time*time;
-			color whatIsHit = w.GetColor(bulletX,bulletY);
-			cout<<(int)whatIsHit.ucBlue<<" "<<(int)whatIsHit.ucRed<<" "<<(int)whatIsHit.ucGreen<<" "<<endl;
 		}
 		leftTurn=true;
 	}
-	color whatIsHit = w.GetColor(bulletX,bulletY);
-	cout<<(int)whatIsHit.ucBlue<<" "<<(int)whatIsHit.ucRed<<" "<<(int)whatIsHit.ucGreen<<" "<<endl;
 	return w.GetColor(bulletX,bulletY);
 }
