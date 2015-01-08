@@ -29,20 +29,20 @@ void main() {
 	right.drawTank(w);
 	w.UpdateBuffer(); 
 
-	while(whatIsHit!=left.getColor() && whatIsHit!=right.getColor())
+	while(whatIsHit!=left.getColor() && whatIsHit!=right.getColor()) // until a tank is hit
 	{
-		getInput(w,skycolor,left,right,leftTurn);
+		getInput(w,skycolor,left,right,leftTurn); 
 		whatIsHit=bullet(w,skycolor,left,right,leftTurn);
 	}
 
-	// clearing angle/power info and setting pen color
+	// clearing angle/power info
 	w.SetBrush(skycolor);
 	w.SetPen(skycolor);	//erasing up top
 	w.DrawRectangle(0,0,w.GetWidth(),200,FILLED);
 	w.SetFont(50,PLAIN,ROMAN);
+	
 	w.SetBrush(BLACK);
 	w.SetPen(BLACK);
-
 	// drawing winner message
 	if (whatIsHit==left.getColor())
 	{
@@ -126,13 +126,13 @@ bool getInput(window& w,color skycolor,tank& left,tank& right,bool& leftTurn) { 
 		if (leftTurn) {
 			left.setAngle(angle);
 			left.setSpeed(velocity);
-			// change pen color
+			// changes pen color
 			left.drawTank(w); // redrawing tank
 		}
 		else {
 			right.setAngle(angle);
 			right.setSpeed(velocity);
-			// change pen color
+			// changes pen color
 			right.drawTank(w); // redrawing tank
 		}
 		w.UpdateBuffer();
@@ -141,16 +141,17 @@ bool getInput(window& w,color skycolor,tank& left,tank& right,bool& leftTurn) { 
 	if(k==13) return true;
 }
 color bullet(window& w,color skycolor,tank& left,tank& right,bool& leftTurn) { // goes through bullets path. returns color of what is hit.
-	w.SetBrush(skycolor); //erasing up top to make sure it doesnt count hitting the text
+	w.SetBrush(skycolor); // erasing up top to make sure it doesnt count hitting the text
 	w.SetPen(skycolor);	
 	w.DrawRectangle(0,0,w.GetWidth(),200,FILLED);
+	double pi=3.1415926;
 	double dtime=0.007;
 	int bulletRadius=4;
 	int bulletX,bulletY;
 	if (leftTurn) {
 		int angle = left.getAngle();
 		int velocity = left.getSpeed();
-		double radianAngle=angle*cdPi/180;
+		double radianAngle=angle*pi/180;
 		double xVel=cos(radianAngle)*velocity;
 		double yVel=sin(radianAngle)*velocity;
 		bulletX=left.getXend()+3;
@@ -163,7 +164,7 @@ color bullet(window& w,color skycolor,tank& left,tank& right,bool& leftTurn) { /
 			w.UpdateBuffer();
 			w.SetBrush(skycolor);
 			w.SetPen(skycolor);
-			w.DrawCircle(bulletX,bulletY,bulletRadius,FILLED);
+			w.DrawCircle(bulletX,bulletY,bulletRadius+1,FILLED);
 			time+=dtime;
 			bulletX+=xVel*time;
 			bulletY+=-yVel*time+40*time*time;
@@ -173,7 +174,7 @@ color bullet(window& w,color skycolor,tank& left,tank& right,bool& leftTurn) { /
 	else { // right
 		int angle = right.getAngle();
 		int velocity = right.getSpeed();
-		double radianAngle=((180-angle)*cdPi/180);
+		double radianAngle=((180-angle)*pi/180);
 		double xVel=cos(radianAngle)*velocity;
 		double yVel=sin(radianAngle)*velocity;
 		bulletX=right.getXend()-3;
@@ -186,7 +187,7 @@ color bullet(window& w,color skycolor,tank& left,tank& right,bool& leftTurn) { /
 			w.UpdateBuffer();
 			w.SetBrush(skycolor);
 			w.SetPen(skycolor);
-			w.DrawCircle(bulletX,bulletY,bulletRadius,FILLED);
+			w.DrawCircle(bulletX,bulletY,bulletRadius+1,FILLED);
 			time+=dtime;
 			bulletX+=xVel*time;
 			bulletY+=-yVel*time+40*time*time;
