@@ -1,6 +1,6 @@
 #ifndef TANK_H_
 #define TANK_H_
-using namespace std; // Because of iostream
+using namespace std;
 #include "../cpp/apvector.h" 	 	
 #include "../cpp/randgen.h"
 #include "../CMUgraphicsLib/cmugraphics.h"		// This will include all of the CMUGraphics Library

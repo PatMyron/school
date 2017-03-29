@@ -1,14 +1,13 @@
-#include <iostream> // Not required - but lets me print to and read from the console
+#include <iostream>
 #include "../cpp/apvector.h"
 #include "../cpp/apstring.h"
 #include "../cpp/randgen.h"
 #include <math.h> 
 #include <cmath>
 #include "tank.h"
-
-using namespace std; // Because of iostream
-#include "../CMUgraphicsLib/cmugraphics.h"		// This will include all of the CMUGraphics Library
+#include "../CMUgraphicsLib/cmugraphics.h"
 #include "../CMUgraphicsLib/auxil.h"
+using namespace std;
 
 apvector<int> drawLandscape(window &, color skycolor, color groundcolor); // creates landscape. returns height of ground at every x-value. only called once
 bool getInput(window &, color skycolor, tank &left, tank &right, bool &leftTurn); // gets input for 2 paramaters. returns true when enter key (shoot) is pressed
