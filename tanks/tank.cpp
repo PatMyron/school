@@ -44,14 +44,6 @@ tank::tank(window &w, color skycolor, color groundcolor, color tankcolor, bool i
 
 }
 
-int tank::getAngle() {
-    return angle;
-}
-
-int tank::getSpeed() {
-    return velocity;
-}
-
 void tank::setAngle(int a) {
     double length = 25;
     double angleRadiansLeft;
@@ -73,21 +65,24 @@ void tank::setSpeed(int v) {
 }
 
 void tank::drawTank(window &w) {
+    w.SetBrush(COLORE);
+    w.SetPen(COLORE);
+    w.DrawEllipse(x - 27, y + 3, x + 27, y - 17, FILLED);
     if (LEFT) {
-        w.SetBrush(COLORE);
-        w.SetPen(COLORE);
-        w.DrawEllipse(x - 27, y + 3, x + 27, y - 17, FILLED);
         w.DrawCircle(x - 2, y - 14, 14, FILLED);
-        w.SetPen(COLORE, 5);
-        w.DrawLine(xStart, yStart, xEnd, yEnd);
     } else {
-        w.SetBrush(COLORE);
-        w.SetPen(COLORE);
-        w.DrawEllipse(x - 27, y + 3, x + 27, y - 17, FILLED);
         w.DrawCircle(x + 2, y - 14, 14, FILLED);
-        w.SetPen(COLORE, 5);
-        w.DrawLine(xStart, yStart, xEnd, yEnd);
     }
+    w.SetPen(COLORE, 5);
+    w.DrawLine(xStart, yStart, xEnd, yEnd);
+}
+
+int tank::getAngle() {
+    return angle;
+}
+
+int tank::getSpeed() {
+    return velocity;
 }
 
 int tank::getXstart() {
