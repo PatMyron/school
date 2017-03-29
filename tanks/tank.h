@@ -6,8 +6,7 @@ using namespace std; // Because of iostream
 #include "../CMUgraphicsLib/cmugraphics.h"		// This will include all of the CMUGraphics Library
 #include "../CMUgraphicsLib/auxil.h"
 
-class tank
-{
+class tank {
 public:
 	tank();
 	tank(window&,color,color,color,bool);
@@ -32,7 +31,6 @@ private:
 	int yEnd;
 	color COLORE;
 	bool LEFT;
-
 };
 
 #endif

@@ -1,4 +1,3 @@
-//Pat Myron
 #include <iostream> // Not required - but lets me print to and read from the console
 #include "../cpp/apvector.h"
 #include "../cpp/apstring.h"
@@ -105,7 +104,6 @@ getInput(window &w, color skycolor, tank &left, tank &right, bool &leftTurn) { /
         w.UpdateBuffer();
 
         //redraw tank
-
         w.SetBrush(skycolor); // erasing around tank
         w.SetPen(skycolor);
         if (leftTurn) w.DrawRectangle(left.getXstart() - 3, left.getYstart() + 3, left.getXend() + 3, left.getYend() - 3, FILLED);
@@ -137,7 +135,6 @@ getInput(window &w, color skycolor, tank &left, tank &right, bool &leftTurn) { /
         }
         w.UpdateBuffer();
     }
-
     if (k == 13) return true;
 }
 
