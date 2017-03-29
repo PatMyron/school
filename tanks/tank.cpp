@@ -46,17 +46,14 @@ tank::tank(window &w, color skycolor, color groundcolor, color tankcolor, bool i
 
 void tank::setAngle(int a) {
     double length = 25;
-    double angleRadiansLeft;
-    double angleRadiansRight;
+    double angleRadians;
     if (LEFT) {
-        angleRadiansLeft = angle * cdPi / 180;
-        xEnd = cos(angleRadiansLeft) * length + xStart;
-        yEnd = -sin(angleRadiansLeft) * length + yStart;
+        angleRadians = angle * cdPi / 180;
     } else {
-        angleRadiansRight = ((180 - angle) * cdPi / 180);
-        xEnd = cos(angleRadiansRight) * length + xStart;
-        yEnd = -sin(angleRadiansRight) * length + yStart;
+        angleRadians = ((180 - angle) * cdPi / 180);
     }
+    xEnd = cos(angleRadians) * length + xStart;
+    yEnd = -sin(angleRadians) * length + yStart;
     angle = a;
 }
 
