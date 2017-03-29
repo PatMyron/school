@@ -20,28 +20,21 @@ tank::tank() : angle(45), velocity(25), x(100), y(100), COLORE(BLACK), LEFT(true
 tank::tank(window &w, color skycolor, color groundcolor, color tankcolor, bool isLeft) : angle(45), velocity(25), COLORE(tankcolor), LEFT(isLeft) {
     RandGen r;
     double length = 25;
-    double angleRadiansLeft;
-    double angleRadiansRight;
+    double angleRadians;
     if (isLeft) {
-        angleRadiansLeft = angle * cdPi / 180;
+        angleRadians = angle * cdPi / 180;
         x = r.RandInt(30, w.GetWidth() / 3);
-        y = 0;
-        while (w.GetColor(x, y) == LIGHTBLUE) y++;
         xStart = x - 2;
-        yStart = y - 14;
-        xEnd = cos(angleRadiansLeft) * length + xStart;
-        yEnd = -sin(angleRadiansLeft) * length + yStart;
     } else {
-        angleRadiansRight = ((180 - angle) * cdPi / 180);
+        angleRadians = ((180 - angle) * cdPi / 180);
         x = r.RandInt(2 * w.GetWidth() / 3, w.GetWidth() - 30);
-        y = 0;
-        while (w.GetColor(x, y) == LIGHTBLUE) y++;
         xStart = x + 2;
-        yStart = y - 14;
-        xEnd = cos(angleRadiansRight) * length + xStart;
-        yEnd = -sin(angleRadiansRight) * length + yStart;
     }
-
+    y = 0;
+    while (w.GetColor(x, y) == LIGHTBLUE) y++;
+    yStart = y - 14;
+    xEnd = cos(angleRadians) * length + xStart;
+    yEnd = -sin(angleRadians) * length + yStart;
 }
 
 void tank::setAngle(int a) {
