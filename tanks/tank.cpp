@@ -6,17 +6,6 @@
 #include <cmath>
 using namespace std;
 
-tank::tank() : angle(45), velocity(25), x(100), y(100), COLORE(BLACK), LEFT(true) {
-    RandGen r;
-    double length = 25;
-    double angleRadiansLeft;
-    angleRadiansLeft = angle * cdPi / 180;
-    xStart = x - 2;
-    yStart = y - 14;
-    xEnd = cos(angleRadiansLeft) * length + xStart;
-    yEnd = -sin(angleRadiansLeft) * length + yStart;
-}
-
 tank::tank(window &w, color skycolor, color groundcolor, color tankcolor, bool isLeft) : angle(45), velocity(25), COLORE(tankcolor), LEFT(isLeft) {
     RandGen r;
     double length = 25;

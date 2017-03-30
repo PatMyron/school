@@ -8,7 +8,6 @@ using namespace std;
 
 class tank {
 public:
-	tank();
 	tank(window&,color,color,color,bool);
 	int getAngle();
 	int getSpeed();
