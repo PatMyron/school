@@ -11,7 +11,7 @@
 using namespace std;
 
 apvector<int> drawLandscape(window &, color skycolor, color groundcolor); // creates landscape. returns height of ground at every x-value. only called once
-bool getInput(window &, color skycolor, tank &left, tank &right, bool &leftTurn); // gets input for 2 paramaters. returns true when enter key (shoot) is pressed
+bool getInput(window &, color skycolor, tank &left, tank &right, bool &leftTurn); // gets input for 2 parameters. returns true when enter key (shoot) is pressed
 color bullet(window &, color skycolor, tank &left, tank &right, bool &leftTurn); // goes through bullets path. returns color of what is hit.
 
 void setBrushAndPenColor(window &w, color brushAndPenColor) {
@@ -71,7 +71,7 @@ apvector<int> drawLandscape(window &w, color skycolor, color groundcolor) { // c
     return heights;
 }
 
-bool getInput(window &w, color skycolor, tank &left, tank &right, bool &leftTurn) { // gets input for 2 paramaters. returns true when enter key (shoot) is pressed
+bool getInput(window &w, color skycolor, tank &left, tank &right, bool &leftTurn) { // gets input for 2 parameters. returns true when enter key (shoot) is pressed
     char k = '#';  // for key, set to a known, but useless value
     int angle;
     int velocity;
@@ -104,7 +104,7 @@ bool getInput(window &w, color skycolor, tank &left, tank &right, bool &leftTurn
         if (leftTurn) w.DrawRectangle(left.getXstart() - 3, left.getYstart() + 3, left.getXend() + 3, left.getYend() - 3, FILLED);
         else w.DrawRectangle(right.getXstart() + 3, right.getYstart() + 3, right.getXend() - 3, right.getYend() - 3, FILLED);
 
-        // letting user change paramaters
+        // letting user change parameters
         w.WaitKeyPress(k);
         if (k == 8) angle++; // up
         if (k == 2) angle--; // down
