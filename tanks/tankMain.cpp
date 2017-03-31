@@ -13,6 +13,12 @@ using namespace std;
 apvector<int> drawLandscape(window &, color skycolor, color groundcolor); // creates landscape. returns height of ground at every x-value. only called once
 bool getInput(window &, color skycolor, tank &left, tank &right, bool &leftTurn); // gets input for 2 paramaters. returns true when enter key (shoot) is pressed
 color bullet(window &, color skycolor, tank &left, tank &right, bool &leftTurn); // goes through bullets path. returns color of what is hit.
+
+void setBrushAndPenColor(window &w, color brushAndPenColor) {
+    w.SetBrush(brushAndPenColor);
+    w.SetPen(brushAndPenColor);
+}
+
 void main() {
     color whatIsHit = color(7, 7, 7); // set to a known, but useless value
     bool leftTurn = true;
@@ -36,13 +42,11 @@ void main() {
     }
 
     // clearing angle/power info
-    w.SetBrush(skycolor);
-    w.SetPen(skycolor);    // erasing up top
+    setBrushAndPenColor(w, skycolor);
     w.DrawRectangle(0, 0, w.GetWidth(), 200, FILLED);
     w.SetFont(50, PLAIN, ROMAN);
 
-    w.SetBrush(BLACK);
-    w.SetPen(BLACK);
+    setBrushAndPenColor(w, BLACK);
     // drawing winner message
     if (whatIsHit == left.getColor()) {
         w.DrawString(w.GetWidth() / 2 - 75, w.GetHeight() / 2 - 66, "player 2 wins!");
@@ -53,14 +57,12 @@ void main() {
 }
 
 apvector<int> drawLandscape(window &w, color skycolor, color groundcolor) { // creates landscape. returns height of ground at every x-value. only called once
-    w.SetBrush(skycolor);
-    w.SetPen(skycolor);
+    setBrushAndPenColor(w, skycolor);
     w.DrawRectangle(0, 0, w.GetWidth(), w.GetHeight(), FILLED);
     RandGen r;
     apvector<int> heights(w.GetWidth()); // height of ground at every x-value
     int ystart = r.RandInt((double) w.GetHeight() * 0.666, (double) w.GetHeight() * 0.75); // semi random height of ground near bottom of screen
-    w.SetBrush(groundcolor);
-    w.SetPen(groundcolor);
+    setBrushAndPenColor(w, groundcolor);
     for (double x = 0; x < w.GetWidth(); x++) { // filling heights[]
         int yval = ystart + sin((double) (x / 60)) * 15; // ground will be sin curve
         w.DrawLine(x, yval, x, w.GetHeight());    // draws line from ground level to bottom of screen
@@ -81,16 +83,14 @@ bool getInput(window &w, color skycolor, tank &left, tank &right, bool &leftTurn
         velocity = right.getSpeed();
     }
     w.SetFont(50, PLAIN, ROMAN);
-    w.SetPen(BLACK);
-    w.SetBrush(BLACK);
+    setBrushAndPenColor(w, BLACK);
     while (k != 13) { // return key
         w.SetBrush(skycolor); // erasing up top
         w.SetPen(skycolor);
         w.DrawRectangle(0, 0, w.GetWidth(), 200, FILLED);
 
         w.SetFont(50, PLAIN, ROMAN); // redrawing up top
-        w.SetBrush(BLACK);
-        w.SetPen(BLACK);
+        setBrushAndPenColor(w, BLACK);
         w.DrawString(w.GetWidth() / 2 - 60, 100, "angle:");
         w.DrawInteger(w.GetWidth() / 2 + 60, 100, angle);
         w.DrawString(w.GetWidth() / 2 - 60, 150, "speed:");
@@ -151,12 +151,10 @@ color bullet(window &w, color skycolor, tank &left, tank &right, bool &leftTurn)
         bulletY = left.getYend() - 3;
         double time = 0;
         while (w.GetColor(bulletX, bulletY) == skycolor) {
-            w.SetBrush(BLACK);
-            w.SetPen(BLACK);
+            setBrushAndPenColor(w, BLACK);
             w.DrawCircle(bulletX, bulletY, bulletRadius, FILLED);
             w.UpdateBuffer();
-            w.SetBrush(skycolor);
-            w.SetPen(skycolor);
+            setBrushAndPenColor(w, skycolor);
             w.DrawCircle(bulletX, bulletY, bulletRadius + 1, FILLED);
             time += dtime;
             bulletX += xVel * time;
@@ -173,12 +171,10 @@ color bullet(window &w, color skycolor, tank &left, tank &right, bool &leftTurn)
         bulletY = right.getYend() - 3;
         double time = 0;
         while (w.GetColor(bulletX, bulletY) == skycolor) {
-            w.SetBrush(BLACK);
-            w.SetPen(BLACK);
+            setBrushAndPenColor(w, BLACK);
             w.DrawCircle(bulletX, bulletY, bulletRadius, FILLED);
             w.UpdateBuffer();
-            w.SetBrush(skycolor);
-            w.SetPen(skycolor);
+            setBrushAndPenColor(w, skycolor);
             w.DrawCircle(bulletX, bulletY, bulletRadius + 1, FILLED);
             time += dtime;
             bulletX += xVel * time;
