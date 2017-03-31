@@ -116,12 +116,12 @@ void getInput(window &w, color skycolor, tank &left, tank &right, bool &leftTurn
             left.setAngle(angle);
             left.setSpeed(velocity);
             // changes pen color
-            left.drawTank(w); // redrawing tank
+            left.drawTank(w);
         } else {
             right.setAngle(angle);
             right.setSpeed(velocity);
             // changes pen color
-            right.drawTank(w); // redrawing tank
+            right.drawTank(w);
         }
         w.UpdateBuffer();
     }
@@ -154,7 +154,7 @@ color bullet(window &w, color skycolor, tank &left, tank &right, bool &leftTurn)
             bulletY += -yVel * time + 40 * time * time;
         }
         leftTurn = false;
-    } else { // right
+    } else {
         int angle = right.getAngle();
         int velocity = right.getSpeed();
         double radianAngle = ((180 - angle) * pi / 180);
