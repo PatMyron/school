@@ -139,22 +139,19 @@ color bullet(window &w, color skycolor, tank &left, tank &right, bool &leftTurn)
         int angle = left.getAngle();
         int velocity = left.getSpeed();
         double radianAngle = angle * pi / 180;
-        double xVel = cos(radianAngle) * velocity;
-        double yVel = sin(radianAngle) * velocity;
         bulletX = left.getXend() + 3;
         bulletY = left.getYend() - 3;
-        double time = 0;
     } else {
         leftTurn = true;
         int angle = right.getAngle();
         int velocity = right.getSpeed();
         double radianAngle = ((180 - angle) * pi / 180);
-        double xVel = cos(radianAngle) * velocity;
-        double yVel = sin(radianAngle) * velocity;
         bulletX = right.getXend() - 3;
         bulletY = right.getYend() - 3;
-        double time = 0;
     }
+    double xVel = cos(radianAngle) * velocity;
+    double yVel = sin(radianAngle) * velocity;
+    double time = 0;
     while (w.GetColor(bulletX, bulletY) == skycolor) {
         setBrushAndPenColor(w, BLACK);
         w.DrawCircle(bulletX, bulletY, bulletRadius, FILLED);
