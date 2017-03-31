@@ -82,8 +82,7 @@ void getInput(window &w, color skycolor, tank &left, tank &right, bool &leftTurn
     w.SetFont(50, PLAIN, ROMAN);
     setBrushAndPenColor(w, BLACK);
     while (k != 13) { // return key
-        w.SetBrush(skycolor); // erasing up top
-        w.SetPen(skycolor);
+        setBrushAndPenColor(w, skycolor); // erasing up top
         w.DrawRectangle(0, 0, w.GetWidth(), 200, FILLED);
 
         w.SetFont(50, PLAIN, ROMAN); // redrawing up top
@@ -96,8 +95,7 @@ void getInput(window &w, color skycolor, tank &left, tank &right, bool &leftTurn
         w.UpdateBuffer();
 
         // redraw tank
-        w.SetBrush(skycolor); // erasing around tank
-        w.SetPen(skycolor);
+        setBrushAndPenColor(w, skycolor); // erasing around tank
         if (leftTurn) w.DrawRectangle(left.getXstart() - 3, left.getYstart() + 3, left.getXend() + 3, left.getYend() - 3, FILLED);
         else w.DrawRectangle(right.getXstart() + 3, right.getYstart() + 3, right.getXend() - 3, right.getYend() - 3, FILLED);
 
@@ -130,8 +128,7 @@ void getInput(window &w, color skycolor, tank &left, tank &right, bool &leftTurn
 }
 
 color bullet(window &w, color skycolor, tank &left, tank &right, bool &leftTurn) { // goes through bullets path. returns color of what is hit.
-    w.SetBrush(skycolor); // erasing up top to make sure it doesnt count hitting the text
-    w.SetPen(skycolor);
+    setBrushAndPenColor(w, skycolor); // erasing up top to make sure it doesnt count hitting the text
     w.DrawRectangle(0, 0, w.GetWidth(), 200, FILLED);
     double pi = 3.1415926;
     double dtime = 0.007;
