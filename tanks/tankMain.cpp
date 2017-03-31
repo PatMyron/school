@@ -70,8 +70,7 @@ void drawLandscape(window &w, color skycolor, color groundcolor) { // creates la
 
 void getInput(window &w, color skycolor, tank &left, tank &right, bool &leftTurn) { // gets input for 2 parameters. returns when enter key (shoot) is pressed
     char k = '#';  // for key, set to a known, but useless value
-    int angle;
-    int velocity;
+    int angle, velocity;
     if (leftTurn) {
         angle = left.getAngle();
         velocity = left.getSpeed();
