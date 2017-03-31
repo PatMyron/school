@@ -135,6 +135,7 @@ color bullet(window &w, color skycolor, tank &left, tank &right, bool &leftTurn)
     int bulletRadius = 4;
     int bulletX, bulletY;
     if (leftTurn) {
+        leftTurn = false;
         int angle = left.getAngle();
         int velocity = left.getSpeed();
         double radianAngle = angle * pi / 180;
@@ -143,18 +144,8 @@ color bullet(window &w, color skycolor, tank &left, tank &right, bool &leftTurn)
         bulletX = left.getXend() + 3;
         bulletY = left.getYend() - 3;
         double time = 0;
-        while (w.GetColor(bulletX, bulletY) == skycolor) {
-            setBrushAndPenColor(w, BLACK);
-            w.DrawCircle(bulletX, bulletY, bulletRadius, FILLED);
-            w.UpdateBuffer();
-            setBrushAndPenColor(w, skycolor);
-            w.DrawCircle(bulletX, bulletY, bulletRadius + 1, FILLED);
-            time += dtime;
-            bulletX += xVel * time;
-            bulletY += -yVel * time + 40 * time * time;
-        }
-        leftTurn = false;
     } else {
+        leftTurn = true;
         int angle = right.getAngle();
         int velocity = right.getSpeed();
         double radianAngle = ((180 - angle) * pi / 180);
@@ -163,17 +154,16 @@ color bullet(window &w, color skycolor, tank &left, tank &right, bool &leftTurn)
         bulletX = right.getXend() - 3;
         bulletY = right.getYend() - 3;
         double time = 0;
-        while (w.GetColor(bulletX, bulletY) == skycolor) {
-            setBrushAndPenColor(w, BLACK);
-            w.DrawCircle(bulletX, bulletY, bulletRadius, FILLED);
-            w.UpdateBuffer();
-            setBrushAndPenColor(w, skycolor);
-            w.DrawCircle(bulletX, bulletY, bulletRadius + 1, FILLED);
-            time += dtime;
-            bulletX += xVel * time;
-            bulletY += -yVel * time + 40 * time * time;
-        }
-        leftTurn = true;
+    }
+    while (w.GetColor(bulletX, bulletY) == skycolor) {
+        setBrushAndPenColor(w, BLACK);
+        w.DrawCircle(bulletX, bulletY, bulletRadius, FILLED);
+        w.UpdateBuffer();
+        setBrushAndPenColor(w, skycolor);
+        w.DrawCircle(bulletX, bulletY, bulletRadius + 1, FILLED);
+        time += dtime;
+        bulletX += xVel * time;
+        bulletY += -yVel * time + 40 * time * time;
     }
     return w.GetColor(bulletX, bulletY);
 }
