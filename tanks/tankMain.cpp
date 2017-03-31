@@ -29,15 +29,14 @@ void main() {
     right.drawTank(w);
     w.UpdateBuffer();
 
-    while (whatIsHit != left.getColor() && whatIsHit != right.getColor()) // until a tank is hit
-    {
+    while (whatIsHit != left.getColor() && whatIsHit != right.getColor()) { // until a tank is hit
         getInput(w, skycolor, left, right, leftTurn);
         whatIsHit = bullet(w, skycolor, left, right, leftTurn);
     }
 
     // clearing angle/power info
     w.SetBrush(skycolor);
-    w.SetPen(skycolor);    //erasing up top
+    w.SetPen(skycolor);    // erasing up top
     w.DrawRectangle(0, 0, w.GetWidth(), 200, FILLED);
     w.SetFont(50, PLAIN, ROMAN);
 
@@ -62,8 +61,7 @@ apvector<int> drawLandscape(window &w, color skycolor, color groundcolor) { // c
     ystart = r.RandInt((double) w.GetHeight() * 0.666, (double) w.GetHeight() * 0.75); // semi random height of ground near bottom of screen
     w.SetBrush(groundcolor);
     w.SetPen(groundcolor);
-    for (double x = 0; x < w.GetWidth(); x++) // filling heights[]
-    {
+    for (double x = 0; x < w.GetWidth(); x++) { // filling heights[]
         int yval = ystart + sin((double) (x / 60)) * 15; // ground will be sin curve
         w.DrawLine(x, yval, x, w.GetHeight());    // draws line from ground level to bottom of screen
         heights[x] = yval;
@@ -86,9 +84,8 @@ getInput(window &w, color skycolor, tank &left, tank &right, bool &leftTurn) { /
     w.SetFont(50, PLAIN, ROMAN);
     w.SetPen(BLACK);
     w.SetBrush(BLACK);
-    while (k != 13)  // the return key
-    {
-        w.SetBrush(skycolor); //erasing up top
+    while (k != 13) { // return key
+        w.SetBrush(skycolor); // erasing up top
         w.SetPen(skycolor);
         w.DrawRectangle(0, 0, w.GetWidth(), 200, FILLED);
 
@@ -102,7 +99,7 @@ getInput(window &w, color skycolor, tank &left, tank &right, bool &leftTurn) { /
 
         w.UpdateBuffer();
 
-        //redraw tank
+        // redraw tank
         w.SetBrush(skycolor); // erasing around tank
         w.SetPen(skycolor);
         if (leftTurn) w.DrawRectangle(left.getXstart() - 3, left.getYstart() + 3, left.getXend() + 3, left.getYend() - 3, FILLED);
