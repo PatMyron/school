@@ -1,13 +1,12 @@
 #include <iostream>
+#include <math.h>
+#include <cmath>
 #include "../cpp/apvector.h"
 #include "../cpp/apstring.h"
 #include "../cpp/randgen.h"
-#include <math.h> 
-#include <cmath>
 #include "tank.h"
 #include "../CMUgraphicsLib/cmugraphics.h"
 #include "../CMUgraphicsLib/auxil.h"
-
 using namespace std;
 
 void drawLandscape(window &, color skycolor, color groundcolor); // creates landscape. only called once
