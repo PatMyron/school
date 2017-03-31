@@ -58,8 +58,7 @@ apvector<int> drawLandscape(window &w, color skycolor, color groundcolor) { // c
     w.DrawRectangle(0, 0, w.GetWidth(), w.GetHeight(), FILLED);
     RandGen r;
     apvector<int> heights(w.GetWidth()); // height of ground at every x-value
-    int ystart;
-    ystart = r.RandInt((double) w.GetHeight() * 0.666, (double) w.GetHeight() * 0.75); // semi random height of ground near bottom of screen
+    int ystart = r.RandInt((double) w.GetHeight() * 0.666, (double) w.GetHeight() * 0.75); // semi random height of ground near bottom of screen
     w.SetBrush(groundcolor);
     w.SetPen(groundcolor);
     for (double x = 0; x < w.GetWidth(); x++) { // filling heights[]
