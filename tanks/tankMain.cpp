@@ -115,12 +115,10 @@ void getInput(window &w, color skycolor, tank &left, tank &right, bool &leftTurn
         if (leftTurn) {
             left.setAngle(angle);
             left.setSpeed(velocity);
-            // changes pen color
-            left.drawTank(w);
+            left.drawTank(w); // changes pen color
         } else {
             right.setAngle(angle);
             right.setSpeed(velocity);
-            // changes pen color
             right.drawTank(w);
         }
         w.UpdateBuffer();
