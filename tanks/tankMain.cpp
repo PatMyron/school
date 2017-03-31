@@ -133,17 +133,18 @@ color bullet(window &w, color skycolor, tank &left, tank &right, bool &leftTurn)
     double pi = 3.1415926;
     double dtime = 0.007;
     int bulletRadius = 4;
-    int bulletX, bulletY;
+    int bulletX, bulletY, angle, velocity;
+    double radianAngle;
     if (leftTurn) {
-        int angle = left.getAngle();
-        int velocity = left.getSpeed();
-        double radianAngle = angle * pi / 180;
+        angle = left.getAngle();
+        velocity = left.getSpeed();
+        radianAngle = angle * pi / 180;
         bulletX = left.getXend() + 3;
         bulletY = left.getYend() - 3;
     } else {
-        int angle = right.getAngle();
-        int velocity = right.getSpeed();
-        double radianAngle = ((180 - angle) * pi / 180);
+        angle = right.getAngle();
+        velocity = right.getSpeed();
+        radianAngle = ((180 - angle) * pi / 180);
         bulletX = right.getXend() - 3;
         bulletY = right.getYend() - 3;
     }
