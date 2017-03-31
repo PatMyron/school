@@ -7,6 +7,7 @@
 #include "tank.h"
 #include "../CMUgraphicsLib/cmugraphics.h"
 #include "../CMUgraphicsLib/auxil.h"
+
 using namespace std;
 
 void drawLandscape(window &, color skycolor, color groundcolor); // creates landscape. only called once

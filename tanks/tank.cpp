@@ -4,6 +4,7 @@
 #include "../CMUgraphicsLib/auxil.h"
 #include <math.h>
 #include <cmath>
+
 using namespace std;
 
 tank::tank(window &w, color skycolor, color groundcolor, color tankcolor, bool isLeft) : angle(45), velocity(25), COLORE(tankcolor), LEFT(isLeft) {
