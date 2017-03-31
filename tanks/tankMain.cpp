@@ -7,6 +7,7 @@
 #include "tank.h"
 #include "../CMUgraphicsLib/cmugraphics.h"
 #include "../CMUgraphicsLib/auxil.h"
+
 using namespace std;
 
 apvector<int> drawLandscape(window &, color skycolor, color groundcolor); // creates landscape. returns height of ground at every x-value. only called once
@@ -69,8 +70,7 @@ apvector<int> drawLandscape(window &w, color skycolor, color groundcolor) { // c
     return heights;
 }
 
-bool
-getInput(window &w, color skycolor, tank &left, tank &right, bool &leftTurn) { // gets input for 2 paramaters. returns true when enter key (shoot) is pressed
+bool getInput(window &w, color skycolor, tank &left, tank &right, bool &leftTurn) { // gets input for 2 paramaters. returns true when enter key (shoot) is pressed
     char k = '#';  // for key, set to a known, but useless value
     int angle;
     int velocity;
