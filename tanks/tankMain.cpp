@@ -5,7 +5,7 @@
 #include "../cpp/apstring.h"
 #include "../cpp/randgen.h"
 #include "tank.h"
-#include "../CMUgraphicsLib/cmugraphics.h"
+#include "../CMUgraphicsLib/CMUgraphics.h"
 #include "../CMUgraphicsLib/auxil.h"
 
 using namespace std;

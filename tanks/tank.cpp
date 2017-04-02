@@ -1,6 +1,6 @@
 #include "tank.h"
 #include "../cpp/randgen.h"
-#include "../CMUgraphicsLib/cmugraphics.h"
+#include "../CMUgraphicsLib/CMUgraphics.h"
 #include "../CMUgraphicsLib/auxil.h"
 #include <math.h>
 #include <cmath>
