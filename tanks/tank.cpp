@@ -14,12 +14,11 @@ tank::tank(window &w, color skycolor, color groundcolor, color tankcolor, bool i
     if (isLeft) {
         angleRadians = angle * cdPi / 180;
         x = r.RandInt(30, w.GetWidth() / 3);
-        xStart = x - 2;
     } else {
         angleRadians = ((180 - angle) * cdPi / 180);
         x = r.RandInt(2 * w.GetWidth() / 3, w.GetWidth() - 30);
-        xStart = x + 2;
     }
+    xStart = x;
     y = 0;
     while (w.GetColor(x, y) == LIGHTBLUE) y++;
     yStart = y - 14;
@@ -31,11 +30,7 @@ void tank::drawTank(window &w) {
     w.SetBrush(COLORE);
     w.SetPen(COLORE);
     w.DrawEllipse(x - 27, y + 3, x + 27, y - 17, FILLED);
-    if (LEFT) {
-        w.DrawCircle(x - 2, y - 14, 14, FILLED);
-    } else {
-        w.DrawCircle(x + 2, y - 14, 14, FILLED);
-    }
+    w.DrawCircle(x, y - 14, 14, FILLED);
     w.SetPen(COLORE, 5);
     w.DrawLine(xStart, yStart, xEnd, yEnd);
 }
