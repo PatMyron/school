@@ -19,14 +19,12 @@ void main() {
     bool leftTurn = true;
     color skycolor = LIGHTBLUE;
     color groundcolor = WHITE;
-    // tanks must be different colors!
-    color tankcolor1 = color(5, 5, 5); // clubs
-    color tankcolor2 = color(40, 40, 40); // left parentheses
     window w(1000, 900);
     w.SetBuffering(true);
     drawLandscape(w, skycolor, groundcolor); // only called once
-    tank left(w, skycolor, groundcolor, tankcolor1, 1);  // angle initialized to 45
-    tank right(w, skycolor, groundcolor, tankcolor2, 0); // speed initialized to 25
+    // tanks must be different colors!
+    tank left(w, skycolor, groundcolor, color(5, 5, 5), true); // clubs symbol color
+    tank right(w, skycolor, groundcolor, color(40, 40, 40), false); // left parentheses symbol color
     left.drawTank(w);
     right.drawTank(w);
     w.UpdateBuffer();
@@ -35,14 +33,12 @@ void main() {
         getInput(w, skycolor, left, right, leftTurn);
         whatIsHit = bullet(w, skycolor, left, right, leftTurn);
     }
-
     // clearing angle/power info
     setBrushAndPenColor(w, skycolor);
     w.DrawRectangle(0, 0, w.GetWidth(), 200, FILLED);
-    w.SetFont(50, PLAIN, ROMAN);
-
-    setBrushAndPenColor(w, BLACK);
     // drawing winner message
+    w.SetFont(50, PLAIN, ROMAN);
+    setBrushAndPenColor(w, BLACK);
     if (whatIsHit == left.getColor()) {
         w.DrawString(w.GetWidth() / 2 - 75, w.GetHeight() / 2 - 66, "player 2 wins!");
     } else {
