@@ -27,7 +27,7 @@ void main() {
     // tanks must be different colors!
     color tankcolor1 = color(5, 5, 5); // clubs
     color tankcolor2 = color(40, 40, 40); // left parentheses
-    window w(1250, 900);
+    window w(1000, 900);
     w.SetBuffering(true);
     drawLandscape(w, skycolor, groundcolor); // only called once
     tank left(w, skycolor, groundcolor, tankcolor1, 1);  // angle initialized to 45
@@ -153,6 +153,7 @@ color bullet(window &w, color skycolor, tank &left, tank &right, bool &leftTurn)
         setBrushAndPenColor(w, BLACK);
         w.DrawCircle(bulletX, bulletY, bulletRadius, FILLED);
         w.UpdateBuffer();
+        Sleep(1);
         setBrushAndPenColor(w, skycolor);
         w.DrawCircle(bulletX, bulletY, bulletRadius + 1, FILLED);
         time += dtime;
