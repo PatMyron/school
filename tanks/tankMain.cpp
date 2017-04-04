@@ -1,12 +1,7 @@
-#include <iostream>
-#include <math.h>
 #include <cmath>
-#include "../cpp/apvector.h"
-#include "../cpp/apstring.h"
 #include "../cpp/randgen.h"
 #include "tank.h"
 #include "../CMUgraphicsLib/CMUgraphics.h"
-#include "../CMUgraphicsLib/auxil.h"
 
 using namespace std;
 

@@ -1,10 +1,7 @@
 #ifndef TANK_H_
 #define TANK_H_
 using namespace std;
-#include "../cpp/apvector.h" 	 	
-#include "../cpp/randgen.h"
-#include "../CMUgraphicsLib/CMUgraphics.h"		// This will include all of the CMUGraphics Library
-#include "../CMUgraphicsLib/auxil.h"
+#include "../CMUgraphicsLib/CMUgraphics.h"
 
 class tank {
 public:
