@@ -66,13 +66,14 @@ void drawLandscape(window &w, color skycolor, color groundcolor) { // creates la
 void getInput(window &w, color skycolor, tank &left, tank &right, bool &leftTurn) { // gets input for 2 parameters. returns when enter key (shoot) is pressed
     char k = '#';  // for key, set to a known, but useless value
     int angle, velocity;
+    tank &currentTank;
     if (leftTurn) {
-        angle = left.getAngle();
-        velocity = left.getSpeed();
+        currentTank = left;
     } else {
-        angle = right.getAngle();
-        velocity = right.getSpeed();
+        currentTank = right;
     }
+    angle = currentTank.getAngle();
+    velocity = currentTank.getSpeed();
     w.SetFont(50, PLAIN, ROMAN);
     setBrushAndPenColor(w, BLACK);
     while (k != 13) { // return key
@@ -90,31 +91,19 @@ void getInput(window &w, color skycolor, tank &left, tank &right, bool &leftTurn
 
         // redraw tank
         setBrushAndPenColor(w, skycolor); // erasing around tank
-        if (leftTurn) w.DrawRectangle(left.getXstart() - 3, left.getYstart() + 3, left.getXend() + 3, left.getYend() - 3, FILLED);
-        else w.DrawRectangle(right.getXstart() + 3, right.getYstart() + 3, right.getXend() - 3, right.getYend() - 3, FILLED);
+        if (leftTurn) w.DrawRectangle(currentTank.getXstart() - 3, currentTank.getYstart() + 3, currentTank.getXend() + 3, currentTank.getYend() - 3, FILLED);
+        else w.DrawRectangle(currentTank.getXstart() + 3, currentTank.getYstart() + 3, currentTank.getXend() - 3, currentTank.getYend() - 3, FILLED);
 
-        // letting user change parameters
+        // letting user change parameters (w/ limits)
         w.WaitKeyPress(k);
-        if (k == 8) angle++; // up
-        if (k == 2) angle--; // down
-        if (k == 6) velocity++; // right
-        if (k == 4) velocity--; // left
+        if (k == 8 && angle < 90) angle++; // up
+        if (k == 2 && angle > 1) angle--; // down
+        if (k == 6 && velocity < 35) velocity++; // right
+        if (k == 4 && velocity > 1) velocity--; // left
 
-        // setting limits
-        if (angle < 1) angle = 1;
-        if (angle > 90) angle = 90;
-        if (velocity < 1) velocity = 1;
-        if (velocity > 35) velocity = 35;
-
-        if (leftTurn) {
-            left.setAngle(angle);
-            left.setSpeed(velocity);
-            left.drawTank(w); // changes pen color
-        } else {
-            right.setAngle(angle);
-            right.setSpeed(velocity);
-            right.drawTank(w);
-        }
+        currentTank.setAngle(angle);
+        currentTank.setSpeed(velocity);
+        currentTank.drawTank(w); // changes pen color
         w.UpdateBuffer();
     }
 }
