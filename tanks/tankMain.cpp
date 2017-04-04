@@ -66,12 +66,7 @@ void drawLandscape(window &w, color skycolor, color groundcolor) { // creates la
 void getInput(window &w, color skycolor, tank &left, tank &right, bool &leftTurn) { // gets input for 2 parameters. returns when enter key (shoot) is pressed
     char k = '#';  // for key, set to a known, but useless value
     int angle, velocity;
-    tank &currentTank;
-    if (leftTurn) {
-        currentTank = left;
-    } else {
-        currentTank = right;
-    }
+    tank &currentTank = leftTurn ? left : right;
     angle = currentTank.getAngle();
     velocity = currentTank.getSpeed();
     w.SetFont(50, PLAIN, ROMAN);
@@ -116,19 +111,17 @@ color bullet(window &w, color skycolor, tank &left, tank &right, bool &leftTurn)
     int bulletRadius = 4;
     int bulletX, bulletY, angle, velocity;
     double radianAngle;
+    tank &currentTank = leftTurn ? left : right;
+    angle = currentTank.getAngle();
     if (leftTurn) {
-        angle = left.getAngle();
-        velocity = left.getSpeed();
         radianAngle = angle * pi / 180;
-        bulletX = left.getXend() + 3;
-        bulletY = left.getYend() - 3;
+        bulletX = currentTank.getXend() + 3;
     } else {
-        angle = right.getAngle();
-        velocity = right.getSpeed();
         radianAngle = ((180 - angle) * pi / 180);
-        bulletX = right.getXend() - 3;
-        bulletY = right.getYend() - 3;
+        bulletX = currentTank.getXend() - 3;
     }
+    velocity = currentTank.getSpeed();
+    bulletY = currentTank.getYend() - 3;
     leftTurn = !leftTurn;
     double xVel = cos(radianAngle) * velocity;
     double yVel = sin(radianAngle) * velocity;
