@@ -77,10 +77,8 @@ void getInput(window &w, color skycolor, tank &left, tank &right, bool &leftTurn
 
         w.SetFont(50, PLAIN, ROMAN); // redrawing up top
         setBrushAndPenColor(w, BLACK);
-        w.DrawString(w.GetWidth() / 2 - 60, 100, "angle:");
-        w.DrawInteger(w.GetWidth() / 2 + 60, 100, angle);
-        w.DrawString(w.GetWidth() / 2 - 60, 150, "speed:");
-        w.DrawInteger(w.GetWidth() / 2 + 60, 150, velocity);
+        w.DrawString(w.GetWidth() / 2 - 60, 100, "angle:" + to_string(angle));
+        w.DrawString(w.GetWidth() / 2 - 60, 150, "speed:" + to_string(velocity));
 
         w.UpdateBuffer();
 
