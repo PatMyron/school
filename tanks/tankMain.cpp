@@ -106,7 +106,6 @@ void getInput(window &w, color skycolor, tank &left, tank &right, bool &leftTurn
 color bullet(window &w, color skycolor, tank &left, tank &right, bool &leftTurn) { // goes through bullets path. returns color of what is hit.
     setBrushAndPenColor(w, skycolor); // erasing up top to make sure it doesnt count hitting the text
     w.DrawRectangle(0, 0, w.GetWidth(), 200, FILLED);
-    double pi = 3.1415926;
     double dtime = 0.007;
     int bulletRadius = 4;
     int bulletX, bulletY, angle, velocity;
@@ -114,10 +113,10 @@ color bullet(window &w, color skycolor, tank &left, tank &right, bool &leftTurn)
     tank &currentTank = leftTurn ? left : right;
     angle = currentTank.getAngle();
     if (leftTurn) {
-        radianAngle = angle * pi / 180;
+        radianAngle = angle * cdPi / 180;
         bulletX = currentTank.getXend() + 3;
     } else {
-        radianAngle = ((180 - angle) * pi / 180);
+        radianAngle = ((180 - angle) * cdPi / 180);
         bulletX = currentTank.getXend() - 3;
     }
     velocity = currentTank.getSpeed();
