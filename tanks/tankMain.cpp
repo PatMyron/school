@@ -61,21 +61,18 @@ void drawLandscape(window &w, color skycolor, color groundcolor) { // creates la
 
 void getInput(window &w, color skycolor, tank &left, tank &right, bool &leftTurn) { // gets input for 2 parameters. returns when enter key (shoot) is pressed
     char k = '#';  // for key, set to a known, but useless value
-    int angle, velocity;
     tank &currentTank = leftTurn ? left : right;
-    angle = currentTank.getAngle();
-    velocity = currentTank.getSpeed();
+    int angle = currentTank.getAngle();
+    int velocity = currentTank.getSpeed();
     w.SetFont(50, PLAIN, ROMAN);
     setBrushAndPenColor(w, BLACK);
     while (k != 13) { // return key
         setBrushAndPenColor(w, skycolor); // erasing up top
         w.DrawRectangle(0, 0, w.GetWidth(), 200, FILLED);
-
         w.SetFont(50, PLAIN, ROMAN); // redrawing up top
         setBrushAndPenColor(w, BLACK);
         w.DrawString(w.GetWidth() / 2 - 60, 100, "angle: " + to_string(angle));
         w.DrawString(w.GetWidth() / 2 - 60, 150, "speed: " + to_string(velocity));
-
         w.UpdateBuffer();
 
         // redraw tank
@@ -102,10 +99,10 @@ color bullet(window &w, color skycolor, tank &left, tank &right, bool &leftTurn)
     w.DrawRectangle(0, 0, w.GetWidth(), 200, FILLED);
     double dtime = 0.007;
     int bulletRadius = 4;
-    int bulletX, bulletY, angle, velocity;
+    int bulletX, bulletY;
     double radianAngle;
     tank &currentTank = leftTurn ? left : right;
-    angle = currentTank.getAngle();
+    int angle = currentTank.getAngle();
     if (leftTurn) {
         radianAngle = angle * cdPi / 180;
         bulletX = currentTank.getXend() + 3;
@@ -113,7 +110,7 @@ color bullet(window &w, color skycolor, tank &left, tank &right, bool &leftTurn)
         radianAngle = ((180 - angle) * cdPi / 180);
         bulletX = currentTank.getXend() - 3;
     }
-    velocity = currentTank.getSpeed();
+    int velocity = currentTank.getSpeed();
     bulletY = currentTank.getYend() - 3;
     leftTurn = !leftTurn;
     double xVel = cos(radianAngle) * velocity;
